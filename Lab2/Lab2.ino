@@ -25,17 +25,28 @@ void sensor_init(void)
 {
   if(check_failure(3))
   {
-    //your code here
-
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(1000);
     failure();
   }
 }
 
 void actuator_init(void)
 {
+
   if(check_failure(5))
   {
-    //your code here
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(250);
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(1000);
+    
 
     failure();
   }
@@ -45,14 +56,27 @@ void wifi_init(void)
 {
   if(check_failure(7))
   {
-    //your code here
 
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(250);
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(250);
+    digitalWrite(13, HIGH);
+    delay(250);
+    digitalWrite(13,LOW);
+    delay(1000);
+     
     failure();
   }
 }
 
 void setup(void)
 {
+  pinMode(13, OUTPUT);
   sensor_init();
   actuator_init();
   wifi_init(); 
