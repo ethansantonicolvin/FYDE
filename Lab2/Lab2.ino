@@ -1,12 +1,11 @@
 // Debug.ino
 // Andrew Lynch
 // January 30, 2018
-//test
 
 // Set the number to whichever part you're currently useing
 // i.e. for part two "STEP_NUMBER 2"
-#define STEP_NUMBER 1
-
+#define STEP_NUMBER 2
+const int ledPin =  13;
 bool check_failure(int);
 int psuedo_random(void);
 void failure(void);
@@ -27,7 +26,8 @@ void sensor_init(void)
   if(check_failure(3))
   {
     //your code here
-
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(5000);
     failure();
   }
 }
@@ -37,7 +37,8 @@ void actuator_init(void)
   if(check_failure(5))
   {
     //your code here
-
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(7000);
     failure();
   }
 }
@@ -47,13 +48,15 @@ void wifi_init(void)
   if(check_failure(7))
   {
     //your code here
-
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(10000);
     failure();
   }
 }
 
 void setup(void)
 {
+  pinMode(ledPin, OUTPUT);
   sensor_init();
   actuator_init();
   wifi_init(); 
@@ -83,10 +86,12 @@ void loop(void)
       if(check_failure(i))
       {
         //insert your code here
-
+        Serial.print("Failure: ");
+        Serial.println(i);
         failure();
       }
     }
+    Serial.println("Success!");
     success();
 }
 
