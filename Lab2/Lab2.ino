@@ -4,8 +4,8 @@
 
 // Set the number to whichever part you're currently useing
 // i.e. for part two "STEP_NUMBER 2"
-#define STEP_NUMBER 1
-
+#define STEP_NUMBER 2
+const int ledPin =  13;
 bool check_failure(int);
 int psuedo_random(void);
 void failure(void);
@@ -25,10 +25,16 @@ void sensor_init(void)
 {
   if(check_failure(3))
   {
+<<<<<<< HEAD
     digitalWrite(13, HIGH);
     delay(250);
     digitalWrite(13,LOW);
     delay(1000);
+=======
+    //your code here
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(5000);
+>>>>>>> 2d84c1779c87d8df52390dd3f32cdf694f7bb4e2
     failure();
   }
 }
@@ -38,6 +44,7 @@ void actuator_init(void)
 
   if(check_failure(5))
   {
+<<<<<<< HEAD
     digitalWrite(13, HIGH);
     delay(250);
     digitalWrite(13,LOW);
@@ -48,6 +55,11 @@ void actuator_init(void)
     delay(1000);
     
 
+=======
+    //your code here
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(7000);
+>>>>>>> 2d84c1779c87d8df52390dd3f32cdf694f7bb4e2
     failure();
   }
 }
@@ -56,6 +68,7 @@ void wifi_init(void)
 {
   if(check_failure(7))
   {
+<<<<<<< HEAD
 
     digitalWrite(13, HIGH);
     delay(250);
@@ -70,13 +83,22 @@ void wifi_init(void)
     digitalWrite(13,LOW);
     delay(1000);
      
+=======
+    //your code here
+    digitalWrite(LED_BUILTIN, LOW);
+    delay(10000);
+>>>>>>> 2d84c1779c87d8df52390dd3f32cdf694f7bb4e2
     failure();
   }
 }
 
 void setup(void)
 {
+<<<<<<< HEAD
   pinMode(13, OUTPUT);
+=======
+  pinMode(ledPin, OUTPUT);
+>>>>>>> 2d84c1779c87d8df52390dd3f32cdf694f7bb4e2
   sensor_init();
   actuator_init();
   wifi_init(); 
@@ -106,10 +128,12 @@ void loop(void)
       if(check_failure(i))
       {
         //insert your code here
-
+        Serial.print("Failure: ");
+        Serial.println(i);
         failure();
       }
     }
+    Serial.println("Success!");
     success();
 }
 
