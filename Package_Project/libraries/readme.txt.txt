@@ -1,0 +1,1 @@
+Copy the two folders and paste them into Arduino/libraries/ to get them to work
