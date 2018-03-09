@@ -11,7 +11,7 @@ struct accelData{
 #define LED_PIN 13
 #define RANGESCALAR 2048.0
 #define nMovingAvg 10
-#define maxAllowedAccel 8.5
+#define maxAllowedAccel 14
 
 MPU6050 accelgyro;
 struct accelData getAccelValues(void);
@@ -63,13 +63,16 @@ void loop() {
     //Serial.print(data.accelZ);Serial.print("\t");
     //Serial.print(getMagnitude(data));Serial.print("\t"); 
 
-    if(sampleNumber < 5){ // don't do moving average until we have 5 values
+    if(sampleNumber < nMovingAvg){ // don't do moving average until we have 5 values
       movingAvgArr[sampleNumber] = getMagnitude(data);
       movingAvg = getMagnitude(data);
     }
     else{
-      movingAvgArr[sampleNumber % 5] = getMagnitude(data);
-      movingAvg = (movingAvgArr[0] + movingAvgArr[1] + movingAvgArr[2] + movingAvgArr[3] + movingAvgArr[4])/5.0;        
+      double sum = 0;
+      movingAvgArr[sampleNumber % nMovingAvg] = getMagnitude(data);
+      for(int i = 0; i < nMovingAvg; i++)
+        sum += movingAvgArr[i];
+      movingAvg = sum / nMovingAvg;
     }
 
     Serial.print(movingAvg);Serial.print("\n");
